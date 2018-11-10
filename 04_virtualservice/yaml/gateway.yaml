@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: example-gateway
+  namespace: example
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - '*.example.com'
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
