@@ -3,8 +3,7 @@
 ## 説明
 
 ここでは、IstioでインストールされたPluginについてみていきます。
-Istioをインストールするだけで、これらのプラグインが使えるようになり、さらには各プラグインの連携（例えばprometheusをデータソースにgrafanaで可視化等）も
-自動的に実施してくれるのはかなり便利です。イケてます。
+Istioをインストールするだけで、これらのプラグインが使えるようになり、さらには各プラグインの連携（例えばprometheusをデータソースにgrafanaで可視化等）も自動的に実施してくれるのはかなり便利です。イケてます。
 
 ## Grafana, Prometheus, ServiceGraph, Tracing(jaeger)
 
@@ -20,9 +19,9 @@ kubectl -n istio-system port-forward $(kubectl get pod -n istio-system -l app=ja
 
 - http://localhost:3000
 - http://localhost:9090
-- http://localhost:8088
+- http://localhost:8088/dotviz
 - http://localhost:16686
 
 ## port-forwardせずに参照したい
 
-毎回port-forwardしないと見れないのは面倒ですよね。これらのPluginを外部から参照できるようにする方法については[04_virtualservie]で扱います。
+毎回port-forwardしないと見れないのは面倒です。これらのPluginを外部から参照できるようにする方法については[04_virtualservice](../04_virtualservice)で扱います。

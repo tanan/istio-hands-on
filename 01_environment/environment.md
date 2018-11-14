@@ -20,6 +20,8 @@ $ gcloud components update
 
 ## クラスター作成
 
+バージョンが時期によって変わっているかもしれませんので、GCP上から確認して入れるか、引数なしのデフォルト値を利用してください。
+
 - [参考資料](https://istio.io/docs/setup/kubernetes/platform-setup/gke/)
 
 ```
@@ -28,15 +30,24 @@ $ gcloud container clusters get-credentials istio-hands-on
 $ kubectl create clusterrolebinding cluster-admin-binding \
     --clusterrole=cluster-admin \
     --user=$(gcloud config get-value core/account)
+$ kubectl get nodes
 ```
 
 ## Istioインストール
+
+Istioをインストールします。また、Istioをインストールした時点で、自動的にTCPロードバランサーも作成されます。
 
 - [参考資料](https://istio.io/docs/setup/kubernetes/quick-start/)
 
 ```
 $ curl -L https://git.io/getLatestIstio | sh -
 $ cd istio-1.0.3
-kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
-kubectl apply -f install/kubernetes/istio-demo.yaml
+$ kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
+$ kubectl apply -f install/kubernetes/istio-demo.yaml
+```
+
+下記のコマンドで、Istioがインストールされたことを確認してみます。
+
+```
+$ kubectl get pods -n istio-system
 ```

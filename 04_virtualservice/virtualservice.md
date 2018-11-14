@@ -2,18 +2,21 @@
 
 ## 説明
 
-実際のProduction環境でこれを実施してしまうと、全世界からgrafanaやprometheusのリソースが見れてしまうので、
-あくまでvirtual hostの設定方法を理解するために利用してください。
+ここでは、Istioのgatewayとvirtualserviceというリソースを使って、先ほどのプラグインを外からみれるようにしてみます。
+
+実際のProduction環境でこれを実施してしまうと、全世界からgrafanaやprometheusのリソースが見れてしまうので、あくまでvirtual hostの設定方法を理解するために利用してください。
 
 ## 環境構築
 
 ```
+cd yaml
 $ kubectl apply -f namespace.yaml
 $ kubectl apply -f gateway.yaml
 $ kubectl apply -f grafana.yaml
 $ kubectl apply -f prometheus.yaml
 $ kubectl apply -f servicegraph.yaml
 $ kubectl apply -f tracing.yaml
+$ kubectl get gateways.networking.istio.io -n example
 $ kubectl get virtualservices.networking.istio.io -n example
 ```
 
@@ -38,4 +41,6 @@ $ kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status
   - http://grafana.example.com/
   - http://prometheus.example.com/
   - http://tracing.example.com/
-  - http://servicegraph.example.com/bizdot
+  - http://servicegraph.example.com/dotviz
+
+これで、ロードバランサー経由で各サービスに外からアクセスができるようになりました。

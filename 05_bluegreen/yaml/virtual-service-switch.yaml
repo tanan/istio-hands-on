@@ -1,0 +1,41 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: hands-on-vs
+  namespace: hands-on
+spec:
+  gateways:
+  - example-gateway.example.svc.cluster.local ## 異なるnamespaceの場合、FQDNを記載
+  hosts:
+  - "hands-on.example.com"
+  http:
+  - match:
+    - headers:
+        x-version:
+          exact: blue ## headerがx-version=blueの場合一致
+      uri:
+        prefix: /news
+    route:
+    - destination:
+        host: hands-on-news-svc
+        subset: blue
+        port:
+          number: 48081
+  - match:
+    - uri:
+        prefix: /news
+    route:
+    - destination:
+        host: hands-on-news-svc
+        subset: green
+        port:
+          number: 48081
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: hands-on-top-svc
+        port:
+          number: 48080
+       

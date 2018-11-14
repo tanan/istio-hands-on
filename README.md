@@ -1,14 +1,14 @@
 # istio-hands-on
 
-本repositoryはIstioを勉強するためのHands-On資料です。
+このリポジトリはIstioを勉強するためのHands-On資料です。
 
 ## 扱う範囲
 
-- GCPでの環境構築
-- Istio ingressの設定
-- blue/green deployment
-- canary deployment
-- 外部データソースへの接続方法
+1. [環境構築(GKE)](xxxxx)
+1. [Pluginの設定](xxxxxx)
+1. [Istio Component](xx)
+1. [Istio ingressの設定](xx)
+1. [blue/green deployment](xxxx)
 
 ## 環境
 
