@@ -20,12 +20,16 @@ $ gcloud components update
 
 ## クラスター作成
 
-バージョンが時期によって変わっているかもしれませんので、GCP上から確認して入れるか、引数なしのデフォルト値を利用してください。
+バージョンが時期によって変わっているかもしれませんので、コマンドから確認して入れるか、引数なしのデフォルト値を利用してください。
+
+```
+$ gcloud container get-server-config --zone asia-northeast1-a
+```
 
 - [参考資料](https://istio.io/docs/setup/kubernetes/platform-setup/gke/)
 
 ```
-$ gcloud container clusters create istio-hands-on --cluster-version=1.11.2-gke.15 --num-nodes=3
+$ gcloud container clusters create istio-hands-on --cluster-version=1.12.5-gke.5 --num-nodes=3
 $ gcloud container clusters get-credentials istio-hands-on
 $ kubectl create clusterrolebinding cluster-admin-binding \
     --clusterrole=cluster-admin \
