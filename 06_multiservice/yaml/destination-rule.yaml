@@ -1,0 +1,29 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: hands-on-news-dr
+  namespace: hands-on1
+spec:
+  host: hands-on-news-svc
+  subsets:
+  - name: blue
+    labels:
+      version: blue
+  - name: green
+    labels:
+      version: green
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: hands-on-news-dr
+  namespace: hands-on2
+spec:
+  host: hands-on-news-svc
+  subsets:
+  - name: blue
+    labels:
+      version: blue
+  - name: green
+    labels:
+      version: green

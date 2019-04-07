@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hands-on-top
+  namespace: hands-on2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hands-on-top
+      version: blue
+  template:
+    metadata:
+      name: hands-on-top
+      labels:
+        app: hands-on-top
+        version: blue
+    spec:
+      containers:
+      - name: hands-on-top
+        image: tanan/hands-on-top:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hands-on-news-blue
+  namespace: hands-on2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hands-on-news
+      version: blue
+  template:
+    metadata:
+      name: hands-on-news
+      labels:
+        app: hands-on-news
+        version: blue
+    spec:
+      containers:
+      - name: hands-on-news-blue
+        image: tanan/hands-on-news:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8081
